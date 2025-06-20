@@ -10,6 +10,14 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
+// added session middleware
+app.use(session({
+  secret: 'user_session',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false }
+}));
+
 // Routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
