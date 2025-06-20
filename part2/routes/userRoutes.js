@@ -55,6 +55,23 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// added
+// added GET /dogs to return dogs owned by logged-in owner
+router.get('/dogs', async (req, res) => {
+  const user = req.session.user;
+  if (!user || user.role !== 'owner') {
+    return res.status(401).json({ error: 'Not authorized' });
+  }
+
+  try {
+    const [rows] = await db.execute(
+      'SELECT dog_id, name, size FROM Dogs WHERE owner_id = ?',
+      [user.user_id]
+    );
+    res.json(rows);
+  } catch (err) {
+    console.error('Error fetching owner dogs:', err);
+    res.status(500).json({ error: 'Failed to load dogs' });
+  }
+});
 
 module.exports = router;
