@@ -108,7 +108,7 @@ let db;
       ('emily_o', 'emily@example.com', 'hashed999', 'owner');
     `);
 
-    // insert Dogs using subqueries as per
+    // insert Dogs using subqueries as per query from previous part
     await db.query(`
       INSERT INTO Dogs (owner_id, name, size)
       VALUES
@@ -119,7 +119,7 @@ let db;
       ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Rocky', 'medium');
     `);
 
-    // Insert Walk Requests using subqueries
+    // insert WalkRequests using subqueries as per query from previous part
     await db.query(`
       INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
       VALUES
@@ -132,7 +132,7 @@ let db;
 
     console.log('Database and initial data successfully set up.');
   } catch (err) {
-    console.error('❌ Error setting up database:', err);
+    console.error('Error setting up database:', err);
   }
 })();
 
