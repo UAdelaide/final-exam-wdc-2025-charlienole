@@ -107,8 +107,29 @@
           }
         }
       },
-      // added to populate site with dog info on mount
-      
+      // added below to populate site with dog info on mount
+      async mounted() {
+        try {
+          const res = await fetch('/api/dogs');
+          const dogList = await res.json();
+
+          // For each dog, fetch a random image
+          const dogsWithPhotos = await Promise.all(
+            dogList.map(async (dog) => {
+              const photoRes = await fetch('https://dog.ceo/api/breeds/image/random');
+              const photoData = await photoRes.json();
+              return {
+                ...dog,
+                photoUrl: photoData.message // This is the random image URL
+              };
+            })
+          );
+
+          this.dogs = dogsWithPhotos;
+        } catch (err) {
+          console.error('Failed to load dogs:', err);
+        }
+      }
     }).mount('#app');
   </script>
 
