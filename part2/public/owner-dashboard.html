@@ -10,7 +10,7 @@
 <body class="bg-light">
   <div id="app" class="container py-4">
     <h1 class="mb-4 text-primary">Owner Dashboard</h1>
-    
+
     <!-- added the following logout button -->
      <div class="d-flex justify-content-end mb-3">
       <button type="button" @click="logout" class="btn btn-danger">Logout</button>
@@ -119,6 +119,9 @@
             message.value = '';
           }
         }
+
+        // added logout function below
+        
 
         onMounted(() => {
           loadWalks();
