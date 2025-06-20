@@ -97,7 +97,7 @@ let db;
       );
     `);
 
-    // Insert Users
+    // insert Users as per query from previous part
     await db.query(`
       INSERT INTO Users (username, email, password_hash, role)
       VALUES
@@ -108,7 +108,7 @@ let db;
       ('emily_o', 'emily@example.com', 'hashed999', 'owner');
     `);
 
-    // Insert Dogs using subqueries
+    // insert Dogs using subqueries as per
     await db.query(`
       INSERT INTO Dogs (owner_id, name, size)
       VALUES
