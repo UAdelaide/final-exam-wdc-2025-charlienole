@@ -57,16 +57,16 @@
 
         // added the getCurrentUser function as below:
         async function getCurrentUser() {
-        try {
-          const res = await fetch('/api/users/me');
-          if (!res.ok) throw new Error('Failed to get current user');
-          const user = await res.json();
-          currentUserId.value = user.user_id;
-        } catch (err) {
-          error.value = 'Could not determine current user';
-          console.error(err);
+          try {
+            const res = await fetch('/api/users/me');
+            if (!res.ok) throw new Error('Failed to get current user');
+            const user = await res.json();
+            currentUserId.value = user.user_id;
+          } catch (err) {
+            error.value = 'Could not determine current user';
+            console.error(err);
+          }
         }
-      }
 
         async function loadWalkRequests() {
           try {
