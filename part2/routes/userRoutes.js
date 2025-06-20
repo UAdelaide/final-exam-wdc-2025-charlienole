@@ -67,7 +67,7 @@ router.get('/dogs', async (req, res) => {
       'SELECT dog_id, name, size FROM Dogs WHERE owner_id = ?',
       [user.user_id]
     );
-    res.json(rows);
+    res.json(rows); // return owned dogs
   } catch (err) {
     console.error('Error fetching owner dogs:', err);
     res.status(500).json({ error: 'Failed to load dogs' });
