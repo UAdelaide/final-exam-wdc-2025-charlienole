@@ -23,7 +23,8 @@ let db;
         const connection = await mysql.createConnection({
             host: 'localhost',
             user: 'root',
-            password: ''
+            password: '',
+            
         });
 
         // create the database as per provided dogwalks.sql file
