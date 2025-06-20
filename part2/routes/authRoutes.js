@@ -17,14 +17,14 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid username or password' });
     }
 
-    const user = rows[0];
+    const user = rows[0]; // get user info
     req.session.user = {
       user_id: user.user_id,
       username: user.username,
       role: user.role
     };
 
-    res.json({ role: user.role });
+    res.json({ role: user.role }); // return user role for redirect on frontend
   } catch (err) {
     console.error('Login error:', err);
     res.status(500).json({ error: 'Internal server error' });
