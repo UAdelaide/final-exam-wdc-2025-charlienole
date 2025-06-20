@@ -135,7 +135,7 @@ let db;
 })();
 
 // /api routes added below
-
+app.get('/api/dogs')
 
 app.use(express.static(path.join(__dirname, 'public')));
 
