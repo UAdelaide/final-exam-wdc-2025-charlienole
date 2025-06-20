@@ -138,7 +138,7 @@ let db;
 // /api routes added below
 app.get('/api/dogs', async (req, res) => {
     try {
-    const [result] = await db.execute(`
+        const [result] = await db.execute(`
         SELECT
             Dogs.name AS dog_name,
             Dogs.size,
@@ -146,16 +146,16 @@ app.get('/api/dogs', async (req, res) => {
         FROM Dogs
         JOIN Users ON Dogs.owner_id = Users.user_id;
     `);
-    res.json(result);
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to retrieve data' });
-  }
+        res.json(result);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to retrieve data' });
+    }
 });
 
 
 app.get('/api/walkrequests/open', async (req, res) => {
     try {
-    const [result] = await db.execute(`
+        const [result] = await db.execute(`
         SELECT
             WalkRequests.request_id,
             Dogs.name AS dog_name,
@@ -168,16 +168,16 @@ app.get('/api/walkrequests/open', async (req, res) => {
         JOIN Users ON Dogs.owner_id = Users.user_id
         WHERE WalkRequests.status = 'open';
     `);
-    res.json(result);
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to retrieve walk requests' });
-  }
+        res.json(result);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to retrieve walk requests' });
+    }
 });
 
 
 app.get('/api/walkers/summary', async (req, res) => {
     try {
-    const [rows] = await db.execute(`
+        const [result] = await db.execute(`
       SELECT
         Users.username AS walker_username,
         COUNT(DISTINCT WalkRatings.rating_id) AS total_ratings,
@@ -190,11 +190,10 @@ app.get('/api/walkers/summary', async (req, res) => {
       WHERE Users.role = 'walker'
       GROUP BY Users.user_id;
     `);
-    res.send(JSON.stringify(rows)); // single-line JSON output
-  } catch (err) {
-    console.error('Error fetching walker summary:', err);
-    res.status(500).json({ error: 'Failed to retrieve walker summary' });
-  }
+        res.json(result);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to retrieve walker summary' });
+    }
 });
 
 
