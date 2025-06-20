@@ -52,7 +52,8 @@
         const message = ref('');
         const error = ref('');
         // removed: const user = 3;
-        // added
+        // added as following:
+        const currentUserId = ref(null);
 
         async function loadWalkRequests() {
           try {
