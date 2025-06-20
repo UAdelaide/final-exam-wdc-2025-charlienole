@@ -6,7 +6,6 @@ var mysql = require('mysql2/promise'); // added
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var apiRouter = require('./routes/api'); // added
 
 var app = express();
 
@@ -16,7 +15,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // database code added below
-
 let db;
 
 (async () => {
