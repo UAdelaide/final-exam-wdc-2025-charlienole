@@ -1,13 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql2/promise');
+const db = require('../models/db');
 
-const dbConfig = {
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'DogWalkService'
-};
 
 // POST /api/auth/login
 router.post('/login', async (req, res) => {
