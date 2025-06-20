@@ -33,6 +33,17 @@
             </div>
           -->
 
+          <!-- added the following instead -->
+          <div class="mb-3">
+  <label class="form-label">Dog Name</label>
+  <select v-model="form.dog_id" class="form-select" required>
+    <option disabled value="">-- Select a dog --</option>
+    <option v-for="dog in ownerDogs" :key="dog.dog_id" :value="dog.dog_id">
+      {{ dog.name }} ({{ dog.size }})
+    </option>
+  </select>
+</div>
+
           <div class="mb-3">
             <label class="form-label">Requested Date & Time</label>
             <input v-model="form.requested_time" type="datetime-local" class="form-control" required>
