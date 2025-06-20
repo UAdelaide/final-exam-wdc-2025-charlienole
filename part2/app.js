@@ -4,6 +4,11 @@ require('dotenv').config();
 
 const session = require('express-session'); // added
 
+// added route handling below
+var AuthRouter = require('./routes/index');
+
+
+
 const app = express();
 
 // Middleware
