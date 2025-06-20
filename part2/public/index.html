@@ -120,7 +120,7 @@
               const photoData = await photoRes.json();
               return {
                 ...dog,
-                photoUrl: photoData.message // This is the random image URL
+                photoUrl: photoData.message // return random image URL
               };
             })
           );
