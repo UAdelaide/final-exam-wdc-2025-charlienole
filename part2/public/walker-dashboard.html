@@ -79,6 +79,16 @@
           }
         }
 
+        // added logout function below
+        async function logout() {
+          try {
+            await fetch('/api/auth/logout'); // call logout route
+            window.location.href = '/'; // redirect
+          } catch (err) {
+            console.error('Logout failed:', err);
+          }
+        }
+
         onMounted(() => {
           loadWalkRequests();
         });
