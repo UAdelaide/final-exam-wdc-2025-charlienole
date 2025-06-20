@@ -60,8 +60,8 @@
           try {
             const res = await fetch('/api/users/me'); // make request to route
             if (!res.ok) throw new Error('Failed to get current user');
-            const user = await res.json(); // save info
-            currentUserId.value = user.user_id;
+            const user = await res.json(); // save logged in user
+            currentUserId.value = user.user_id; // get id
           } catch (err) {
             error.value = 'Could not determine current user';
             console.error(err);
