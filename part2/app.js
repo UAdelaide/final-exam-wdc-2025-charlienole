@@ -5,9 +5,7 @@ require('dotenv').config();
 const session = require('express-session'); // added
 
 // added route handling below
-var AuthRouter = require('./routes/index');
-
-
+var authRouter = require('./routes/authRoutes');
 
 const app = express();
 
