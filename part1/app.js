@@ -6,7 +6,7 @@ var mysql = require('mysql2/promise'); // added
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var apiRouter = require('./routes/api')
+var apiRouter = require('./routes/api'); // added
 
 var app = express();
 
@@ -18,5 +18,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api, apiRouter'); // added
 
 module.exports = app;
