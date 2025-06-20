@@ -130,7 +130,7 @@ let db;
       ((SELECT dog_id FROM Dogs WHERE name = 'Rocky'), '2025-06-13 11:15:00', 40, 'City Square', 'cancelled');
     `);
 
-    console.log('Database set up.');
+    console.log('Database set up and records inserted.');
   } catch (err) {
     console.error('Error setting up database:', err);
   }
