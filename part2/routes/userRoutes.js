@@ -57,8 +57,8 @@ router.post('/login', async (req, res) => {
 
 // added GET /dogs to return dogs owned by logged-in owner
 router.get('/dogs', async (req, res) => {
-  const user = req.session.user;
-  if (!user || user.role !== 'owner') {
+  const user = req.session.user; // check for logged in user
+  if (!user || user.role !== 'owner') { // double check role
     return res.status(401).json({ error: 'Not authorized' });
   }
 
