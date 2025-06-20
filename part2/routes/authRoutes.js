@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models/db');
 
-// POST /auth/login
+// added POST /auth/login route
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
