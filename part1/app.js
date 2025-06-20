@@ -138,7 +138,7 @@ let db;
 // /api routes added below
 app.get('/api/dogs', async (req, res) => {
     try {
-    const [rows] = await db.execute(`
+    const [result] = await db.execute(`
       SELECT
         Dogs.name AS dog_name,
         Dogs.size,
@@ -146,7 +146,7 @@ app.get('/api/dogs', async (req, res) => {
       FROM Dogs
       JOIN Users ON Dogs.owner_id = Users.user_id;
     `);
-    res.json(rows);
+    res.json(result);
   } catch (err) {
     console.error('Error fetching dogs with owners:', err);
     res.status(500).json({ error: 'Failed to retrieve data' });
