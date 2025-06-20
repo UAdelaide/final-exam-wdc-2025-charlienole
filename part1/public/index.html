@@ -1,38 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/vue@3"></script> <!-- Vue 3 -->
+    <script src="https://unpkg.com/vue@3"></script>
     <title>Dog of the Day</title>
+    <style>
+        body {
+            background-color: magenta;
+            font-family: 'Comic Sans MS', cursive;
+            color: yellow;
+            text-align: center;
+        }
+
+        button {
+            padding: 20px;
+            font-size: 2em;
+            margin: 50px;
+            background-color: cyan;
+            border: 5px dotted red;
+        }
+
+        img {
+            width: 90vw;
+            border: 10px solid lime;
+        }
+
+        h1 {
+            font-size: 4em;
+            color: red;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.5em;
+        }
+    </style>
 </head>
+
 <body>
     <div id="app">
-    <h1>DOG OF THE DAY!!!</h1>
-    <button @click="getDog">CLICK HERE NOW!!!</button>
-    <div v-if="dogImage">
-      <img :src="dogImage" />
-      <p><strong>Name:</strong> Mr Woofykins Wigglebutt III</p>
-      <p><strong>Breed:</strong> ???</p>
+        <h1>DOG OF THE DAY!!!</h1>
+        <button @click="getDog">CLICK HERE NOW!!!</button>
+        <div v-if="dogImage">
+            <img :src="dogImage" />
+            <p><strong>Name:</strong> Mr Woofykins Wigglebutt III</p>
+            <p><strong>Breed:</strong> ???</p>
+        </div>
     </div>
-  </div>
 
-  <script>
-    const { createApp } = Vue;
-    createApp({
-      data() {
-        return {
-          dogImage: null
-        }
-      },
-      methods: {
-        async getDog() {
-          const res = await fetch('https://dog.ceo/api/breeds/image/random');
-          const data = await res.json();
-          this.dogImage = data.message;
-        }
-      }
-    }).mount('#app');
-  </script>
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    dogImage: null
+                }
+            },
+            methods: {
+                async getDog() {
+                    const res = await fetch('https://dog.ceo/api/breeds/image/random');
+                    const data = await res.json();
+                    this.dogImage = data.message;
+                }
+            }
+        }).mount('#app');
+    </script>
 </body>
+
 </html>
