@@ -148,7 +148,16 @@
         }
 
         // added the following to get owner's dogs
-        
+        const ownerDogs = ref([]);
+
+        async function loadOwnerDogs() {
+          try {
+            const res = await fetch('/api/users/dogs'); // call route
+            ownerDogs.value = await res.json(); // store
+          } catch (err) {
+            error.value = 'Failed to load your dogs';
+          }
+        }
 
         onMounted(() => {
           loadWalks();
