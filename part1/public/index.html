@@ -7,6 +7,14 @@
     <title>Dog of the Day</title>
 </head>
 <body>
-
+    <div id="app">
+    <h1>DOG OF THE DAY!!!</h1>
+    <button @click="getDog">CLICK HERE NOW!!!</button>
+    <div v-if="dogImage">
+      <img :src="dogImage" />
+      <p><strong>Name:</strong> Mr Woofykins Wigglebutt III</p>
+      <p><strong>Breed:</strong> ???</p>
+    </div>
+  </div>
 </body>
 </html>
