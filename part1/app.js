@@ -176,7 +176,25 @@ app.get('/api/walkrequests/open', async (req, res) => {
 
 
 app.get('/api/walkers/summary', async (req, res) => {
-
+    try {
+    const [rows] = await db.execute(`
+      SELECT
+        Users.username AS walker_username,
+        COUNT(DISTINCT WalkRatings.rating_id) AS total_ratings,
+        ROUND(AVG(WalkRatings.rating), 2) AS average_rating,
+        COUNT(DISTINCT CASE WHEN WalkRequests.status = 'completed' THEN WalkRequests.request_id END) AS completed_walks
+      FROM Users
+      LEFT JOIN WalkRatings ON Users.user_id = WalkRatings.walker_id
+      LEFT JOIN WalkApplications ON Users.user_id = WalkApplications.walker_id
+      LEFT JOIN WalkRequests ON WalkApplications.request_id = WalkRequests.request_id AND WalkRequests.status = 'completed'
+      WHERE Users.role = 'walker'
+      GROUP BY Users.user_id;
+    `);
+    res.send(JSON.stringify(rows)); // single-line JSON output
+  } catch (err) {
+    console.error('Error fetching walker summary:', err);
+    res.status(500).json({ error: 'Failed to retrieve walker summary' });
+  }
 });
 
 
