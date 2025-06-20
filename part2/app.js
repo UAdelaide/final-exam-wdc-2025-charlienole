@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 require('dotenv').config();
-const db = require('/models/db'); // added
+const db = require('models/db'); // added
 
 const session = require('express-session'); // added
 
