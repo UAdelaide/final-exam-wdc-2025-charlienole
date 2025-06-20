@@ -136,7 +136,7 @@ let db;
   }
 })();
 
-// database code added above
+// 
 
 app.use(express.static(path.join(__dirname, 'public')));
 
