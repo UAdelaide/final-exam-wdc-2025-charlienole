@@ -39,8 +39,28 @@
       </div>
     </div>
 
-    <!-- added the following: -->
-     
+    <!-- added the following table: -->
+    <h2 class="mt-5 mb-3">All Dogs</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Dog ID</th>
+          <th>Name</th>
+          <th>Size</th>
+          <th>Owner ID</th>
+          <th>Photo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(dog, index) in dogs" :key="index">
+          <td>{{ dog.dog_id }}</td>
+          <td>{{ dog.dog_name }}</td>
+          <td>{{ dog.size }}</td>
+          <td>{{ dog.owner_id }}</td>
+          <td><img :src="dog.photoUrl" alt="Dog photo" width="100"></td>
+        </tr>
+      </tbody>
+    </table>
 
   </div>
 
