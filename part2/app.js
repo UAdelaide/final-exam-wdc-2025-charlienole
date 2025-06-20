@@ -8,7 +8,24 @@ const app = express();
 
 app.use(express.json());
 
-
+// added /api/dogs route here
+app.get('/api/dogs', async (req, res) => {
+    try {
+        const [result] = await db.execute(`
+            SELECT
+                Dogs.dog_id,
+                Dogs.name AS dog_name,
+                Dogs.size,
+                Dogs.owner_id,
+                Users.username AS owner_username
+            FROM Dogs
+            JOIN Users ON Dogs.owner_id = Users.user_id;
+        `);
+        res.json(result);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to retrieve data' });
+    }
+});
 
 app.use(express.static(path.join(__dirname, '/public')));
 
