@@ -33,7 +33,7 @@ let db;
     await connection.query('CREATE DATABASE DogWalkService');
     await connection.end();
 
-    // Connect to the newly created database
+    // connect to the newly created database
     db = await mysql.createConnection({
       host: 'localhost',
       user: 'root',
@@ -41,7 +41,7 @@ let db;
       database: 'DogWalkService'
     });
 
-    // Create tables
+    // create tables as per provided dogwalks.sql file
     await db.query(`
       CREATE TABLE Users (
           user_id INT AUTO_INCREMENT PRIMARY KEY,
