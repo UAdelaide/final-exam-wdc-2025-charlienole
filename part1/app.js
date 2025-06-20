@@ -148,7 +148,6 @@ app.get('/api/dogs', async (req, res) => {
     `);
     res.json(result);
   } catch (err) {
-    console.error('Error fetching dogs with owners:', err);
     res.status(500).json({ error: 'Failed to retrieve data' });
   }
 });
@@ -169,9 +168,8 @@ app.get('/api/walkrequests/open', async (req, res) => {
       JOIN Users ON Dogs.owner_id = Users.user_id
       WHERE WalkRequests.status = 'open';
     `);
-    res.send(JSON.stringify(rows)); // compact JSON response
+    res.json(result);
   } catch (err) {
-    console.error('Error fetching open walk requests:', err);
     res.status(500).json({ error: 'Failed to retrieve walk requests' });
   }
 });
