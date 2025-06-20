@@ -72,12 +72,12 @@
             }
 
             const data = await response.json();
-            if (data.role === 'owner') { // check role 
+            if (data.role === 'owner') { // check role & redirect as necessary
               window.location.href = 'owner-dashboard.html';
             } else if (data.role === 'walker') {
               window.location.href = 'walker-dashboard.html';
             }
-          } catch (err) {
+          } catch (err) { // check for errors and display to user
             this.error = 'An error occurred';
             console.error(err);
           }
