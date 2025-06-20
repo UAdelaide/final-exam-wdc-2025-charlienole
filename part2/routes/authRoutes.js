@@ -33,12 +33,12 @@ router.post('/login', async (req, res) => {
 
 // added GET /auth/logout route
 router.get('/logout', (req, res) => {
-  req.session.destroy((err) => {
+  req.session.destroy((err) => { // destroys session
     if (err) {
       return res.status(500).json({ error: 'Logout failed' });
     }
-    res.clearCookie('connect.sid');
-    res.redirect('/');
+    res.clearCookie('connect.sid'); // clears cookie data
+    res.redirect('/'); // returns to index.html page for login form
   });
 });
 
