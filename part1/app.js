@@ -18,29 +18,29 @@ app.use(cookieParser());
 let db;
 
 (async () => {
-  try {
-    // connect to MySQL without specifying database
-    const connection = await mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: ''
-    });
+    try {
+        // connect to MySQL without specifying database
+        const connection = await mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: ''
+        });
 
-    // create the database as per provided dogwalks.sql file
-    await connection.query('DROP DATABASE IF EXISTS DogWalkService');
-    await connection.query('CREATE DATABASE DogWalkService');
-    await connection.end();
+        // create the database as per provided dogwalks.sql file
+        await connection.query('DROP DATABASE IF EXISTS DogWalkService');
+        await connection.query('CREATE DATABASE DogWalkService');
+        await connection.end();
 
-    // connect to the newly created database
-    db = await mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'DogWalkService'
-    });
+        // connect to the newly created database
+        db = await mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: '',
+            database: 'DogWalkService'
+        });
 
-    // create tables as per provided dogwalks.sql file
-    await db.query(`
+        // create tables as per provided dogwalks.sql file
+        await db.query(`
         CREATE TABLE Users (
             user_id INT AUTO_INCREMENT PRIMARY KEY,
             username VARCHAR(50) UNIQUE NOT NULL,
@@ -95,8 +95,8 @@ let db;
         );
     `);
 
-    // insert Users as per query from previous part
-    await db.query(`
+        // insert Users as per query from previous part
+        await db.query(`
       INSERT INTO Users (username, email, password_hash, role)
       VALUES
       ('alice123', 'alice@example.com', 'hashed123', 'owner'),
@@ -106,8 +106,8 @@ let db;
       ('emily_o', 'emily@example.com', 'hashed999', 'owner');
     `);
 
-    // insert Dogs using subqueries as per query from previous part
-    await db.query(`
+        // insert Dogs using subqueries as per query from previous part
+        await db.query(`
       INSERT INTO Dogs (owner_id, name, size)
       VALUES
       ((SELECT user_id FROM Users WHERE username = 'alice123'), 'Max', 'medium'),
@@ -117,8 +117,8 @@ let db;
       ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Rocky', 'medium');
     `);
 
-    // insert WalkRequests using subqueries as per query from previous part
-    await db.query(`
+        // insert WalkRequests using subqueries as per query from previous part
+        await db.query(`
       INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
       VALUES
       ((SELECT dog_id FROM Dogs WHERE name = 'Max'), '2025-06-10 08:00:00', 30, 'Parklands', 'open'),
@@ -128,10 +128,10 @@ let db;
       ((SELECT dog_id FROM Dogs WHERE name = 'Rocky'), '2025-06-13 11:15:00', 40, 'City Square', 'cancelled');
     `);
 
-    console.log('Database set up and records inserted.');
-  } catch (err) {
-    console.error('Error setting up database:', err);
-  }
+        console.log('Database set up and records inserted.');
+    } catch (err) {
+        console.error('Error setting up database:', err);
+    }
 })();
 
 
