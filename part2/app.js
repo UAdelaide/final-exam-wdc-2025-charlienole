@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json());
 
-// added /api/dogs route here
+// added /api/dogs route here, modified to return dog id and owner id
 app.get('/api/dogs', async (req, res) => {
     try {
         const [result] = await db.execute(`
