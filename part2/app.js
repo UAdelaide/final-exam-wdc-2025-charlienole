@@ -4,9 +4,6 @@ require('dotenv').config();
 
 const session = require('express-session'); // added
 
-// added route handling below
-var authRouter = require('./routes/authRoutes');
-
 const app = express();
 
 // Middleware
@@ -24,6 +21,8 @@ app.use(session({
 // Routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
+var authRoutes = require('./routes/authRoutes'); // added
+
 
 app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
